@@ -14,11 +14,7 @@ function getRandomColor() {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-function startNewGame() {
-  // Reset score to zero
-  score = 0;
-  scoreElement.textContent = score;
-
+function startNewRound() {
   targetColor = getRandomColor();
   colorBox.style.backgroundColor = targetColor;
 
@@ -41,13 +37,19 @@ function startNewGame() {
   gameStatus.classList.remove("celebrate");
 }
 
+function startNewGame() {
+  score = 0;
+  scoreElement.textContent = score;
+  startNewRound();
+}
+
 function handleGuess(guessedColor) {
   if (guessedColor === targetColor) {
     score++;
     scoreElement.textContent = score;
     gameStatus.textContent = "Correct!";
     gameStatus.classList.add("celebrate");
-    setTimeout(startNewGame, 1500);
+    setTimeout(startNewRound, 1500);
   } else {
     gameStatus.textContent = "Wrong! Try again.";
     const wrongOption = Array.from(colorOptions).find(
