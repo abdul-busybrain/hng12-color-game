@@ -14,6 +14,12 @@ function getRandomColor() {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
+function startNewGame() {
+  score = 0;
+  scoreElement.textContent = score;
+  startNewRound();
+}
+
 function startNewRound() {
   targetColor = getRandomColor();
   colorBox.style.backgroundColor = targetColor;
@@ -35,12 +41,6 @@ function startNewRound() {
 
   gameStatus.textContent = "";
   gameStatus.classList.remove("celebrate");
-}
-
-function startNewGame() {
-  score = 0;
-  scoreElement.textContent = score;
-  startNewRound();
 }
 
 function handleGuess(guessedColor) {
